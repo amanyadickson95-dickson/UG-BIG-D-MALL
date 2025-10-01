@@ -31,6 +31,19 @@ header div{font-size:12px;color:#ccc;margin-top:6px}
       text-decoration: none;
     }
     img { width: 100%; border-radius: 10px; }
+    .buy-btn button {
+    background: #25D366; /* WhatsApp green */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .buy-btn button:hover {
+    background: #20b858;
+  }
 </style>
 </head>
 <body>
@@ -4115,6 +4128,20 @@ document.getElementById('searchBox').addEventListener('input', function(e){
         }
     });
 });
+   document.querySelectorAll('.card').forEach(card => {
+    let model = card.getAttribute("data-model"); // phone model from data-model attribute
+    let price = card.querySelector(".price").innerText; // price from card
+    let newDiv = document.createElement('div');
+    newDiv.className = 'buy-btn';
+
+    // Your WhatsApp number in international format
+    let phoneNumber = "256758648710";  
+    let message = `Hello, I'm interested in buying the ${model} for ${price}`;
+    let whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+    newDiv.innerHTML = `<a href="${whatsappURL}" target="_blank"><button>Buy Now</button></a>`;
+    card.appendChild(newDiv);
+  });
 </script>
 </body>
 </html>
